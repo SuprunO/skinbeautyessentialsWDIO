@@ -1,0 +1,4 @@
+{
+  "using": "css selector",
+  "value": ".buttons.clearfix>.pull-right>a"
+}
