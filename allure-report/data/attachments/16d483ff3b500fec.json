@@ -1,5 +1,0 @@
-{
-  "error": "no such element",
-  "message": "no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\"#input-payment-firstname\"}\n  (Session info: chrome=80.0.3987.132)",
-  "stacktrace": "Backtrace:\n\tOrdinal0 [0x01030C83+1707139]\n\tOrdinal0 [0x00F968F1+1075441]\n\tOrdinal0 [0x00F0DFC9+516041]\n\tOrdinal0 [0x00EA8C99+101529]\n\tOrdinal0 [0x00EC4720+214816]\n\tOrdinal0 [0x00EB9ED0+171728]\n\tOrdinal0 [0x00EC30F4+209140]\n\tOrdinal0 [0x00EB9D4B+171339]\n\tOrdinal0 [0x00EA1D4A+73034]\n\tOrdinal0 [0x00EA2DC0+77248]\n\tOrdinal0 [0x00EA2D59+77145]\n\tOrdinal0 [0x00FABB67+1162087]\n\tGetHandleVerifier [0x010CA966+508998]\n\tGetHandleVerifier [0x010CA6A4+508292]\n\tGetHandleVerifier [0x010DF7B7+594583]\n\tGetHandleVerifier [0x010CB1D6+511158]\n\tOrdinal0 [0x00FA402C+1130540]\n\tOrdinal0 [0x00FAD4CB+1168587]\n\tOrdinal0 [0x00FAD633+1168947]\n\tOrdinal0 [0x00FC5B35+1268533]\n\tBaseThreadInitThunk [0x75576359+25]\n\tRtlGetAppContainerNamedObjectPath [0x77587B74+228]\n\tRtlGetAppContainerNamedObjectPath [0x77587B44+180]\n"
-}
