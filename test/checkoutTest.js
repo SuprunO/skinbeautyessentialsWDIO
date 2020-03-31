@@ -17,7 +17,7 @@ describe("End to End Guest Checkout Test", () => {
     allureReporter.addEnvironment("Platform Name:", config.platformName);
   });
 
-  it("Test 1 Checkout", () => {
+  it.skip("Test 1 Checkout", () => {
     expect(browser.getUrl()).to.contain("https://skinbeautyessentials.com/");
     step("Use search", () => {
       $(Header_PO.searchField).setValue(

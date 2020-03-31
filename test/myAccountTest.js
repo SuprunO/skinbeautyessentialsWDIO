@@ -15,33 +15,50 @@ describe("My Account Test", () => {
   });
 
   it("Register new account", () => {
-    Registration_PO.goToRegistrationPage();
-    Registration_PO.fillinRegistrationFields(
-      "Jane",
-      "Doe",
-      "os@SpeechGrammarList.com",
-      "3334444445",
-      "Polyana",
-      "United States",
-      "Illinois",
-      "New York","60062",
-      "Qwerty!1",
-      "Qwerty!1",    
-    );
-    Registration_PO.registrationPrivacyPolicyRadioCTA.click();
-    Registration_PO.registrationContinueCTA.click();
+    step("Go to Registration page", () => {
+      Registration_PO.goToRegistrationPage();
+    });
+    step("Fill-in registration form", () => {
+      Registration_PO.fillinRegistrationFields(
+        "Jane",
+        "Doe",
+        "os@SpeechGrammarList.com",
+        "3334444445",
+        "Polyana",
+        "United States",
+        "Illinois",
+        "New York",
+        "60062",
+        "Qwerty!1",
+        "Qwerty!1"
+      );
+    });
+
+    step("Click on PrivacyPolicyRadio-Button", () => {
+      Registration_PO.registrationPrivacyPolicyRadioCTA.click();
+    });
+    step("Click on Continue Button", () => {
+      Registration_PO.registrationContinueCTA.click();
+    });
   });
 
   it("Login to my account", () => {
-  browser.url(config.baseUrl +"/index.php?route=account/login");
-  $(Form_PO.returningCustomerEmailLocator).setValue("os@SpeechGrammarList.com");
-  $(Form_PO.returningCustomerPasswordLocator).setValue("Qwerty!1");
-  $(Form_PO.returningCustomerLoginCTA).click();
-  expect(browser.getTitle()).to.contain("My Account");
+    step("Go to Login Intercept page", () => {
+    browser.url(config.baseUrl + "/index.php?route=account/login");
+  });
+
+  it("Fill-in returned customer credentials and submit form", () => {
+    $(Form_PO.returningCustomerEmailLocator).setValue("os@SpeechGrammarList.com" );
+    $(Form_PO.returningCustomerPasswordLocator).setValue("Qwerty!1");
+
+    $(Form_PO.returningCustomerLoginCTA).click();
+  });
+  it("Verify the User reach My account page", () => {
+    expect(browser.getTitle()).to.contain("My Account");
+  });
   });
 
   it("Delete address", () => {});
-
 
   function step(step, func, attachment) {
     allureReporter.startStep(step);
@@ -64,11 +81,4 @@ describe("My Account Test", () => {
       allureReporter.endStep(status); // undefined => passed
     }
   }
-  
 });
-
-
-      
-   
-    
-     

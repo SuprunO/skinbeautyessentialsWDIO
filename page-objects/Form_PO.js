@@ -73,6 +73,7 @@ class Form_PO extends Base_PO {
   }
 
   get deliveryDetailsSubmitButton() {
+    browser.pause(5000);
     return $("#button-shipping-method");
   }
 
