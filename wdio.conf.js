@@ -209,6 +209,7 @@ exports.config = {
       }
     });
   },
+
   /**
    * Runs before a WebdriverIO command gets executed.
    * @param {String} commandName hook command name

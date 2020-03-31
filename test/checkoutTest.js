@@ -1,6 +1,7 @@
 const config = require("../config/main-config");
 var dataGenerators = require("../utils/dataGenerators");
 import Form_PO from "../page-objects/Form_PO";
+import Header_PO from "../page-objects/Header_PO";
 import allureReporter from "@wdio/allure-reporter";
 import Base_PO from "../page-objects/Base_PO";
 
@@ -19,10 +20,10 @@ describe("End to End Guest Checkout Test", () => {
   it("Test 1 Checkout", () => {
     expect(browser.getUrl()).to.contain("https://skinbeautyessentials.com/");
     step("Use search", () => {
-      $(Form_PO.searchField).setValue(
+      $(Header_PO.searchField).setValue(
         "Daily Essential Enzymes 500 mg. - 240 Capsules"
       );
-      $(Form_PO.searchCTA).click();
+      $(Header_PO.searchCTA).click();
     });
     step("Click on CLP image", () => {
       $(Form_PO.CLPImage).click();

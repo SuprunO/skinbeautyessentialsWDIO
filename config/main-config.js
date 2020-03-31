@@ -1,5 +1,5 @@
 module.exports = {
-    baseUrl: 'http://www.webdriveruniversity.com',
+    baseUrl: 'https://skinbeautyessentials.com',
     browser: 'chrome',
     browserVersion: '80.0.3987.149',
 

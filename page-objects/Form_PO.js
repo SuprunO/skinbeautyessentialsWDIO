@@ -1,40 +1,33 @@
 import Base_PO from "./Base_PO";
+const config = require("../config/main-config");
 
 class Form_PO extends Base_PO {
   open() {
-    super.open("https://skinbeautyessentials.com");
+    super.open(config.baseUrl);
   }
 
-  goToCart(){
-    super.open("https://skinbeautyessentials.com/index.php?route=checkout/cart");
-  }
-
-  get searchField() {
-    return $("[id=search]>input");
-  }
-
-  get searchCTA() {
-    return $("#search>span>button");
+  goToCart() {
+    super.open(config.baseUrl + "/index.php?route=checkout/cart");
   }
 
   get CLPImage() {
-    return $('.image');
+    return $(".image");
   }
 
   get addToCart() {
     return $("#button-cart");
   }
-   
-  get cartCheckoutCTA(){
-    return $('.buttons.clearfix>.pull-right>a');
+
+  get cartCheckoutCTA() {
+    return $(".buttons.clearfix>.pull-right>a");
   }
 
-  get guestRadioButton(){
-    return $('[value=guest]');
+  get guestRadioButton() {
+    return $("[value=guest]");
   }
 
-  get goToShippingCTA(){
-    return $('#button-account');
+  get goToShippingCTA() {
+    return $("#button-account");
   }
 
   //Shipping form
@@ -91,7 +84,6 @@ class Form_PO extends Base_PO {
     return $("[value*=Confirm]");
   }
 
-
   get submitCheckout() {
     return $('//*[@id="cardgate-confirm"]');
   }
@@ -118,7 +110,7 @@ class Form_PO extends Base_PO {
   }
 
   get postcodeSelectorPayment() {
-    return $("[name=postal_code1]");
+    return $("[name=postal_code]");
   }
 
   get telephoneSelectorPayment() {
@@ -159,6 +151,19 @@ class Form_PO extends Base_PO {
     return $("#formsubmit");
   }
 
+  //TODO: need architect 
+  // Login intercept
+  get returningCustomerEmailLocator(){
+    return $("[name=email]");
+  }
+
+  get returningCustomerPasswordLocator(){
+    return $("[name=password]");
+  }
+
+  get returningCustomerLoginCTA(){
+    return $("[value=Login");
+  }
 
   submitAllInformationViaContactUsForm(
     firstName,
@@ -278,6 +283,8 @@ class Form_PO extends Base_PO {
       this.ccCVVLocator.setValue(ccCVV);
     }
   }
+
+
 }
 
 export default new Form_PO();
