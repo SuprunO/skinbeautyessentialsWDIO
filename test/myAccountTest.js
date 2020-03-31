@@ -44,18 +44,19 @@ describe("My Account Test", () => {
 
   it("Login to my account", () => {
     step("Go to Login Intercept page", () => {
-    browser.url(config.baseUrl + "/index.php?route=account/login");
-  });
+      browser.url(config.baseUrl + "/index.php?route=account/login");
+    });
 
-  it("Fill-in returned customer credentials and submit form", () => {
-    $(Form_PO.returningCustomerEmailLocator).setValue("os@SpeechGrammarList.com" );
-    $(Form_PO.returningCustomerPasswordLocator).setValue("Qwerty!1");
-
-    $(Form_PO.returningCustomerLoginCTA).click();
-  });
-  it("Verify the User reach My account page", () => {
-    expect(browser.getTitle()).to.contain("My Account");
-  });
+    step("Fill-in returned customer credentials and submit form", () => {
+      $(Form_PO.returningCustomerEmailLocator).setValue(
+        "os@SpeechGrammarList.com"
+      );
+      $(Form_PO.returningCustomerPasswordLocator).setValue("Qwerty!1");
+      $(Form_PO.returningCustomerLoginCTA).click();
+    });
+    step("Verify the User reach My account page", () => {
+      expect(browser.getTitle()).to.contain("My Account");
+    });
   });
 
   it("Delete address", () => {});
