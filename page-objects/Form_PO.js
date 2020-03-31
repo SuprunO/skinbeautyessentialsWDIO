@@ -118,7 +118,7 @@ class Form_PO extends Base_PO {
   }
 
   get postcodeSelectorPayment() {
-    return $("[name=postal_code]");
+    return $("[name=postal_code1]");
   }
 
   get telephoneSelectorPayment() {

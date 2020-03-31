@@ -81,10 +81,10 @@ exports.config = {
   // - @wdio/sumologic-reporter
   // - @wdio/cli, @wdio/config, @wdio/sync, @wdio/utils
   // Level of logging verbosity: trace | debug | info | warn | error | silent
-  // logLevels: {
-  //     webdriver: 'info',
-  //     '@wdio/applitools-service': 'info'
-  // },
+   logLevels: {
+       webdriver: 'silent',
+       '@wdio/applitools-service': 'silent'
+   },
   //
   // If you only want to run your tests until a specific amount of tests have failed use
   // bail (default is 0 - don't bail, run all tests).
@@ -104,14 +104,14 @@ exports.config = {
   connectionRetryTimeout: 90000,
   //
   // Default request retries count
-  connectionRetryCount: 3,
+  connectionRetryCount: 1,
   //
   // Test runner services
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
   services: ["chromedriver"],
-
+//chromedriver
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
   // see also: https://webdriver.io/docs/frameworks.html
@@ -134,7 +134,7 @@ exports.config = {
     },
     allure: {
       outputDir: './allure-results/',
-      disableWebdriverStepsReporting: true,
+      disableWebdriverStepsReporting: false,
       disableWebdriverScreenshotsReporting: false,
       //useCucumberStepReporter: false
     }
@@ -144,7 +144,7 @@ exports.config = {
   // See the full list at http://mochajs.org/
   mochaOpts: {
     ui: "bdd",
-    timeout: 60000,
+    timeout: 999999,
     compilers: ["js:@babel/register"]
   },
   //
