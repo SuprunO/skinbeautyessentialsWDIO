@@ -284,8 +284,6 @@ class Form_PO extends Base_PO {
       this.ccCVVLocator.setValue(ccCVV);
     }
   }
-
-
 }
 
 export default new Form_PO();

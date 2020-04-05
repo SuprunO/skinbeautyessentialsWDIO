@@ -1,8 +1,8 @@
 import allureReporter from "@wdio/allure-reporter";
 const config = require("../config/main-config");
-import Base_PO from "../page-objects/Base_PO";
 import Form_PO from "../page-objects/Form_PO";
 import Registration_PO from "../page-objects/Registration_PO";
+import dataGenerators from "../utils/dataGenerators";
 
 describe("My Account Test", () => {
   beforeEach(function() {
@@ -22,7 +22,7 @@ describe("My Account Test", () => {
       Registration_PO.fillinRegistrationFields(
         "Jane",
         "Doe",
-        "os@SpeechGrammarList.com",
+        dataGenerators.generateRandomEmailAddress(),
         "3334444445",
         "Polyana",
         "United States",
@@ -40,9 +40,13 @@ describe("My Account Test", () => {
     step("Click on Continue Button", () => {
       Registration_PO.registrationContinueCTA.click();
     });
+
+    step("Verify the User reach Account / success page", () => {
+      expect(browser.getTitle()).to.contain("Your Account Has Been Created!");
+    });
   });
 
-  it("Login to my account", () => {
+  it.skip("Login to My account", () => {
     step("Go to Login Intercept page", () => {
       browser.url(config.baseUrl + "/index.php?route=account/login");
     });
@@ -59,7 +63,10 @@ describe("My Account Test", () => {
     });
   });
 
-  it("Delete address", () => {});
+  it("Add new address", () => {});
+
+
+  it("Delete new address", () => {});
 
   function step(step, func, attachment) {
     allureReporter.startStep(step);
