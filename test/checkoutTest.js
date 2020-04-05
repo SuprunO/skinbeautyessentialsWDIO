@@ -1,13 +1,12 @@
 const config = require("../config/main-config");
-var dataGenerators = require("../utils/dataGenerators");
 import Form_PO from "../page-objects/Form_PO";
 import Header_PO from "../page-objects/Header_PO";
 import allureReporter from "@wdio/allure-reporter";
-import Base_PO from "../page-objects/Base_PO";
+import Allure from "../utils/allureFunction";
 
 describe("End to End Guest Checkout Test", () => {
   beforeEach(function() {
-    step("Open site", () => {
+    Allure.step("Open site", () => {
     Form_PO.open();
   });
     allureReporter.addEnvironment("Browser:", config.browser);
@@ -17,32 +16,32 @@ describe("End to End Guest Checkout Test", () => {
     allureReporter.addEnvironment("Platform Name:", config.platformName);
   });
 
-  it.skip("Test 1 Checkout", () => {
+  it("Test 1: Checkout", () => {
     expect(browser.getUrl()).to.contain("https://skinbeautyessentials.com/");
-    step("Use search", () => {
+    Allure.step("Use search", () => {
       $(Header_PO.searchField).setValue(
         "Daily Essential Enzymes 500 mg. - 240 Capsules"
       );
       $(Header_PO.searchCTA).click();
     });
-    step("Click on CLP image", () => {
+    Allure.step("Click on CLP image", () => {
       $(Form_PO.CLPImage).click();
     });
-    step("Add Product to Cart", () => {
+    Allure.step("Add Product to Cart", () => {
       $(Form_PO.addToCart).click();
     });
-    step("Proceed to Cart", () => {
+    Allure.step("Proceed to Cart", () => {
       Form_PO.goToCart();
       expect(browser.getUrl()).to.contain(
         "https://skinbeautyessentials.com/index.php?route=checkout/cart"
       );
       Form_PO.cartCheckoutCTA.click();
     });
-    step("Login page", () => {
+    Allure.step("Login page", () => {
       Form_PO.guestRadioButton.click();
       Form_PO.goToShippingCTA.click();
     });
-    step("Fill-in Shipping form and submit it", () => {
+    Allure.step("Fill-in Shipping form and submit it", () => {
       Form_PO.submitAllInformationViaContactUsForm(
         "John",
         "Doe",
@@ -56,12 +55,12 @@ describe("End to End Guest Checkout Test", () => {
       );
       Form_PO.billingDetailsSubmitButton.click();
     });
-    step("Submit Checkout", () => {
+    Allure.step("Submit Checkout", () => {
       Form_PO.deliveryDetailsSubmitButton.click();
       Form_PO.paymentMethodSubmitButton.click();
       Form_PO.submitCheckout.click();
     });
-    step("Fill-in Payment gate and submit it", () => {
+    Allure.step("Fill-in Payment gate and submit it", () => {
       Form_PO.submitAllInformationViaContactUsFormPayment(
         "John",
         "Doe",
@@ -81,33 +80,7 @@ describe("End to End Guest Checkout Test", () => {
     });
   });
 
-  // it("Test 2 Failed test", () => {
-  //   expect(browser.getUrl()).to.contain("https://skinbeautyessentials.co/");
-  // });
-
-  it("Test 3 Passed test", () => {
+  it("Test 2: Passed test", () => {
     expect(browser.getUrl()).to.contain("https://skinbeautyessentials.com/");
   });
-
-  function step(step, func, attachment) {
-    allureReporter.startStep(step);
-
-    if (attachment) {
-      allureReporter.addAttachment(attachment);
-    }
-
-    let status;
-    try {
-      func();
-    } catch (error) {
-      allureReporter.addAttachment(error);
-      if (error && error.name === "AssertionError") {
-        status = "failed";
-      } else {
-        status = "broken";
-      }
-    } finally {
-      allureReporter.endStep(status); // undefined => passed
-    }
-  }
 });

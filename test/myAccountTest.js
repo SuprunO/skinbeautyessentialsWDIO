@@ -1,12 +1,16 @@
 import allureReporter from "@wdio/allure-reporter";
+import Allure from "../utils/allureFunction";
 const config = require("../config/main-config");
 import Form_PO from "../page-objects/Form_PO";
 import Registration_PO from "../page-objects/Registration_PO";
 import dataGenerators from "../utils/dataGenerators";
 
+
 describe("My Account Test", () => {
   beforeEach(function() {
+    Allure.step("Open site", () => {
     Form_PO.open();
+  });
     allureReporter.addEnvironment("Browser:", config.browser);
     allureReporter.addEnvironment("Browser Version:", config.browserVersion);
     allureReporter.addEnvironment("Loglevel:", config.logLevel);
@@ -15,10 +19,10 @@ describe("My Account Test", () => {
   });
 
   it("Register new account", () => {
-    step("Go to Registration page", () => {
+    Allure.step("Go to Registration page", () => {
       Registration_PO.goToRegistrationPage();
     });
-    step("Fill-in registration form", () => {
+    Allure.step("Fill-in registration form", () => {
       Registration_PO.fillinRegistrationFields(
         "Jane",
         "Doe",
@@ -34,59 +38,51 @@ describe("My Account Test", () => {
       );
     });
 
-    step("Click on PrivacyPolicyRadio-Button", () => {
+    Allure.step("Click on PrivacyPolicyRadio-Button", () => {
       Registration_PO.registrationPrivacyPolicyRadioCTA.click();
     });
-    step("Click on Continue Button", () => {
+    Allure.step("Click on Continue Button", () => {
       Registration_PO.registrationContinueCTA.click();
     });
 
-    step("Verify the User reach Account / success page", () => {
+    Allure.step("Verify the User reach Account / success page", () => {
       expect(browser.getTitle()).to.contain("Your Account Has Been Created!");
     });
   });
 
   it.skip("Login to My account", () => {
-    step("Go to Login Intercept page", () => {
+    Allure.step("Go to Login Intercept page", () => {
       browser.url(config.baseUrl + "/index.php?route=account/login");
     });
 
-    step("Fill-in returned customer credentials and submit form", () => {
+    Allure.step("Fill-in returned customer credentials and submit form", () => {
       $(Form_PO.returningCustomerEmailLocator).setValue(
         "os@SpeechGrammarList.com"
       );
       $(Form_PO.returningCustomerPasswordLocator).setValue("Qwerty!1");
       $(Form_PO.returningCustomerLoginCTA).click();
     });
-    step("Verify the User reach My account page", () => {
+    Allure.step("Verify the User reach My account page", () => {
       expect(browser.getTitle()).to.contain("My Account");
     });
   });
 
-  it("Add new address", () => {});
+  it("Login and add new address", () => {
+  Allure.step("Go to Login Intercept page", () => {
+    browser.url(config.baseUrl + "/index.php?route=account/login");
+  });
 
+  Allure.step("Fill-in returned customer credentials and submit form", () => {
+    $(Form_PO.returningCustomerEmailLocator).setValue(
+      "os@SpeechGrammarList.com"
+    );
+    $(Form_PO.returningCustomerPasswordLocator).setValue("Qwerty!1");
+    $(Form_PO.returningCustomerLoginCTA).click();
+  });
+  Allure.step("Verify the User reach My account page", () => {
+    expect(browser.getTitle()).to.contain("My Account");
+  });
 
   it("Delete new address", () => {});
-
-  function step(step, func, attachment) {
-    allureReporter.startStep(step);
-
-    if (attachment) {
-      allureReporter.addAttachment(attachment);
-    }
-
-    let status;
-    try {
-      func();
-    } catch (error) {
-      allureReporter.addAttachment(error);
-      if (error && error.name === "AssertionError") {
-        status = "failed";
-      } else {
-        status = "broken";
-      }
-    } finally {
-      allureReporter.endStep(status); // undefined => passed
-    }
-  }
+});
 });
