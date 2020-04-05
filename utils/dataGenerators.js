@@ -2,11 +2,11 @@ module.exports = {
   //Example: AutoFramework_057602943343303625@webdriveruni.com
   generateRandomEmailAddress: function() {
     let emailAddress =
-      "AutoFramework_" +
+      "TestEmail_" +
       Math.random()
         .toString()
         .replace("0.", "") +
-      "@webdriveruni.com";
+      "@gmail.com";
     return emailAddress;
   },
 
