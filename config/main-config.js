@@ -7,7 +7,7 @@ module.exports = {
     logLevel: 'silent',
     developer: 'Oleksii Suprun',
     platformName: 'Windows 10',
-    timeout: 15000
+    timeout: 25000
 }
 
 

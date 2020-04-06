@@ -152,20 +152,6 @@ class Form_PO extends Base_PO {
     return $("#formsubmit");
   }
 
-  //TODO: need architect 
-  // Login intercept
-  get returningCustomerEmailLocator(){
-    return $("[name=email]");
-  }
-
-  get returningCustomerPasswordLocator(){
-    return $("[name=password]");
-  }
-
-  get returningCustomerLoginCTA(){
-    return $("[value=Login");
-  }
-
   submitAllInformationViaContactUsForm(
     firstName,
     lastName,

@@ -44,7 +44,6 @@ describe("My Account Test", () => {
     Allure.step("Click on Continue Button", () => {
       Registration_PO.registrationContinueCTA.click();
     });
-
     Allure.step("Verify the User reach Account / success page", () => {
       expect(browser.getTitle()).to.contain("Your Account Has Been Created!");
     });
@@ -56,27 +55,28 @@ describe("My Account Test", () => {
     });
 
     Allure.step("Fill-in returned customer credentials and submit form", () => {
-      $(Form_PO.returningCustomerEmailLocator).setValue(
+      $(MyAccount_PO.returningCustomerEmailLocator).setValue(
         "os@SpeechGrammarList.com"
       );
-      $(Form_PO.returningCustomerPasswordLocator).setValue("Qwerty!1");
-      $(Form_PO.returningCustomerLoginCTA).click();
+      $(MyAccount_PO.returningCustomerPasswordLocator).setValue("Qwerty!1");
+      $(MyAccount_PO.returningCustomerLoginCTA).click();
     });
     Allure.step("Verify the User reach My account page", () => {
       expect(browser.getTitle()).to.contain("My Account");
     });
   });
 
-  it("Login and add new address", () => {
+  it.skip("Login and add new address", () => {
     Allure.step("Go to Login Intercept page", () => {
       browser.url(config.baseUrl + "/index.php?route=account/login");
     });
 
     Allure.step("Fill-in returned customer credentials and submit form", () => {
-      $(Form_PO.returningCustomerEmailLocator).setValue(
-      "os@SpeechGrammarList.com");
-      $(Form_PO.returningCustomerPasswordLocator).setValue("Qwerty!1");
-      $(Form_PO.returningCustomerLoginCTA).click();
+      $(MyAccount_PO.returningCustomerEmailLocator).setValue(
+        "os@SpeechGrammarList.com"
+      );
+      $(MyAccount_PO.returningCustomerPasswordLocator).setValue("Qwerty!1");
+      $(MyAccount_PO.returningCustomerLoginCTA).click();
     });
 
     Allure.step("Click on 'Modify your address book entries' link", () => {
@@ -86,36 +86,33 @@ describe("My Account Test", () => {
       $(MyAccount_PO.NewAddressCTALocator).click();
     });
     Allure.step("Fill the EDIT Address form and submit it", () => {
-      Registration_PO.fillinRegistrationFields(   
-      "Jane",
-      "Doe",
-      dataGenerators.generateRandomEmailAddress(),
-      "3334444445",
-      "Polyana",
-      "United States",
-      "Illinois",
-      "New York",
-      "60062",
-      "Qwerty!1",
-      "Qwerty!1"
+      Registration_PO.fillinRegistrationFields(
+        "Jane",
+        "Doe",
+        null,
+        null,
+        "Polyana",
+        "United States",
+        "Illinois",
+        "New York",
+        "60062",
+        null,
+        null
       );
       $(MyAccount_PO.ContinueCTALocator).click();
     });
   });
 
-  it.skip("Delete new address", () => {
-    Allure.step("Go to Login Intercept page", () => {
+  it("Delete new address", () => {
+      Allure.step("Go to Login Intercept page", () => {
       browser.url(config.baseUrl + "/index.php?route=account/login");
     });
 
     Allure.step("Fill-in returned customer credentials and submit form", () => {
-      $(Form_PO.returningCustomerEmailLocator).setValue(
-        "os@SpeechGrammarList.com"
-      );
-      $(Form_PO.returningCustomerPasswordLocator).setValue("Qwerty!1");
-      $(Form_PO.returningCustomerLoginCTA).click();
+      $(MyAccount_PO.returningCustomerEmailLocator).setValue("os@SpeechGrammarList.com");
+      $(MyAccount_PO.returningCustomerPasswordLocator).setValue("Qwerty!1");
+      $(MyAccount_PO.returningCustomerLoginCTA).click();
     });
-
     Allure.step("Click on 'Modify your address book entries' link", () => {
       $(MyAccount_PO.AddressBookLinkLocator).click();
     });
