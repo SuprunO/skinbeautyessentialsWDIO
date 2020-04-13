@@ -4,7 +4,6 @@ const config = require("../config/main-config");
 import Form_PO from "../page-objects/Form_PO";
 import MyAccount_PO from "../page-objects/MyAccount_PO";
 import Registration_PO from "../page-objects/Registration_PO";
-import dataGenerators from "../utils/dataGenerators";
 
 describe("My Account Test", () => {
   beforeEach(function() {
@@ -18,38 +17,7 @@ describe("My Account Test", () => {
     allureReporter.addEnvironment("Platform Name:", config.platformName);
   });
 
-  it.skip("Register new account", () => {
-    Allure.step("Go to Registration page", () => {
-      Registration_PO.goToRegistrationPage();
-    });
-    Allure.step("Fill-in registration form", () => {
-      Registration_PO.fillinRegistrationFields(
-        "Jane",
-        "Doe",
-        dataGenerators.generateRandomEmailAddress(),
-        "3334444445",
-        "Polyana",
-        "United States",
-        "Illinois",
-        "New York",
-        "60062",
-        "Qwerty!1",
-        "Qwerty!1"
-      );
-    });
-
-    Allure.step("Click on PrivacyPolicyRadio-Button", () => {
-      Registration_PO.registrationPrivacyPolicyRadioCTA.click();
-    });
-    Allure.step("Click on Continue Button", () => {
-      Registration_PO.registrationContinueCTA.click();
-    });
-    Allure.step("Verify the User reach Account / success page", () => {
-      expect(browser.getTitle()).to.contain("Your Account Has Been Created!");
-    });
-  });
-
-  it.skip("Login to My account", () => {
+  it("Login to My account", () => {
     Allure.step("Go to Login Intercept page", () => {
       browser.url(config.baseUrl + "/index.php?route=account/login");
     });
@@ -66,20 +34,12 @@ describe("My Account Test", () => {
     });
   });
 
-  it.skip("Login and add new address", () => {
-    Allure.step("Go to Login Intercept page", () => {
-      browser.url(config.baseUrl + "/index.php?route=account/login");
-    });
-
-    Allure.step("Fill-in returned customer credentials and submit form", () => {
-      $(MyAccount_PO.returningCustomerEmailLocator).setValue(
-        "os@SpeechGrammarList.com"
-      );
-      $(MyAccount_PO.returningCustomerPasswordLocator).setValue("Qwerty!1");
-      $(MyAccount_PO.returningCustomerLoginCTA).click();
-    });
-
+  it("Login and add new address", () => {
+     Allure.step("Go to Login Intercept page", () => {
+       browser.url(config.baseUrl + "/index.php?route=account/account");
+     });
     Allure.step("Click on 'Modify your address book entries' link", () => {
+      browser.pause(10000);
       $(MyAccount_PO.AddressBookLinkLocator).click();
     });
     Allure.step("Click on 'Add new address' CTA", () => {
@@ -104,16 +64,11 @@ describe("My Account Test", () => {
   });
 
   it("Delete new address", () => {
-      Allure.step("Go to Login Intercept page", () => {
-      browser.url(config.baseUrl + "/index.php?route=account/login");
-    });
-
-    Allure.step("Fill-in returned customer credentials and submit form", () => {
-      $(MyAccount_PO.returningCustomerEmailLocator).setValue("os@SpeechGrammarList.com");
-      $(MyAccount_PO.returningCustomerPasswordLocator).setValue("Qwerty!1");
-      $(MyAccount_PO.returningCustomerLoginCTA).click();
-    });
+       Allure.step("Go to Login Intercept page", () => {
+       browser.url(config.baseUrl + "/index.php?route=account/account");
+     });
     Allure.step("Click on 'Modify your address book entries' link", () => {
+      browser.pause(10000);
       $(MyAccount_PO.AddressBookLinkLocator).click();
     });
     Allure.step("Delete 2-nd address", () => {
