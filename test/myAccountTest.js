@@ -19,8 +19,8 @@ describe("My Account Test", () => {
 
   it("Login to My account", () => {
     Allure.step("Go to Login Intercept page", () => {
-      browser.url(config.baseUrl + "/index.php?route=account/login");
-    });
+      MyAccount_PO.goToLoginPage();
+     });
 
     Allure.step("Fill-in returned customer credentials and submit form", () => {
       $(MyAccount_PO.returningCustomerEmailLocator).setValue(
@@ -36,7 +36,7 @@ describe("My Account Test", () => {
 
   it("Login and add new address", () => {
      Allure.step("Go to Login Intercept page", () => {
-       browser.url(config.baseUrl + "/index.php?route=account/account");
+      MyAccount_PO.goToMyAccountPage();
      });
     Allure.step("Click on 'Modify your address book entries' link", () => {
       $(MyAccount_PO.AddressBookLinkLocator).click();
@@ -64,7 +64,7 @@ describe("My Account Test", () => {
 
   it("Delete new address", () => {
        Allure.step("Go to Account page", () => {
-       browser.url(config.baseUrl + "/index.php?route=account/account");
+        MyAccount_PO.goToMyAccountPage();
      });
     Allure.step("Click on 'Modify your address book entries' link", () => {
       browser.pause(10000);

@@ -1,4 +1,15 @@
-class MyAccount_PO {
+import Base_PO from "./Base_PO";
+const config = require("../config/main-config");
+
+class MyAccount_PO extends Base_PO {
+  goToLoginPage() {
+    super.open(config.baseUrl + "/index.php?route=account/login");
+  }
+
+  goToMyAccountPage() {
+    super.open(config.baseUrl + "/index.php?route=account/account");
+  }
+  
   get returningCustomerEmailLocator() {
     return $("[name=email]");
   }
