@@ -2,7 +2,6 @@ import allureReporter from "@wdio/allure-reporter";
 import Allure from "../utils/allureFunction";
 const config = require("../config/main-config");
 import Form_PO from "../page-objects/Form_PO";
-import MyAccount_PO from "../page-objects/MyAccount_PO";
 import Registration_PO from "../page-objects/Registration_PO";
 import dataGenerators from "../utils/dataGenerators";
 

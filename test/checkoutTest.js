@@ -3,6 +3,8 @@ import Form_PO from "../page-objects/Form_PO";
 import Header_PO from "../page-objects/Header_PO";
 import allureReporter from "@wdio/allure-reporter";
 import Allure from "../utils/allureFunction";
+import PaymentProcessor_PO from "../page-objects/PaymentProcessor_PO";
+import Shipping_PO from "../page-objects/Shipping_PO";
 
 describe("End to End Guest Checkout Test", () => {
   beforeEach(function() {
@@ -42,7 +44,7 @@ describe("End to End Guest Checkout Test", () => {
       Form_PO.goToShippingCTA.click();
     });
     Allure.step("Fill-in Shipping form and submit it", () => {
-      Form_PO.submitAllInformationViaContactUsForm(
+      Shipping_PO.submitShippingForm(
         "John",
         "Doe",
         "os@gmail.com",
@@ -61,7 +63,7 @@ describe("End to End Guest Checkout Test", () => {
       Form_PO.submitCheckout.click();
     });
     Allure.step("Fill-in Payment gate and submit it", () => {
-      Form_PO.submitAllInformationViaContactUsFormPayment(
+      PaymentProcessor_PO.submitAllInformationViaContactUsFormPayment(
         "John",
         "Doe",
         "666 Quicksilver road",
@@ -76,7 +78,7 @@ describe("End to End Guest Checkout Test", () => {
         "2025",
         "123"
       );
-      $(Form_PO.submitPaymentGate).click();
+      $(PaymentProcessor_PO.submitPaymentGate).click();
     });
   });
 

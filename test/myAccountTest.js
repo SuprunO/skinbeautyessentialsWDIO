@@ -39,7 +39,6 @@ describe("My Account Test", () => {
        browser.url(config.baseUrl + "/index.php?route=account/account");
      });
     Allure.step("Click on 'Modify your address book entries' link", () => {
-      browser.pause(10000);
       $(MyAccount_PO.AddressBookLinkLocator).click();
     });
     Allure.step("Click on 'Add new address' CTA", () => {
@@ -64,7 +63,7 @@ describe("My Account Test", () => {
   });
 
   it("Delete new address", () => {
-       Allure.step("Go to Login Intercept page", () => {
+       Allure.step("Go to Account page", () => {
        browser.url(config.baseUrl + "/index.php?route=account/account");
      });
     Allure.step("Click on 'Modify your address book entries' link", () => {
